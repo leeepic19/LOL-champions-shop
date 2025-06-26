@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英雄联盟</title>
+    <link rel="icon" href="image/OIP-C.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <!-- 头部 -->
+    <div class="header">
+        <div class="wrap">
+            <div class="search">
+                <div class="search-logo"></div>
+                <div class="form">
+                    <input type="text" placeholder="输入英雄名称">
+                    <button>
+                        <img src="./image/放大镜.png" alt="搜索">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 在<body>标签内添加购物车结构 -->
+<div class="cart-wrapper">
+    <div class="cart-icon">
+        🛒
+        <span class="cart-count">0</span>
+    </div>
+    <div class="cart-content">
+        <div class="cart-items"></div>
+        <div class="cart-total">
+            总计：<span>0</span> 精粹
+            <button class="clear-cart">清空</button>
+        </div>
+    </div>
+</div>
+
+<!-- 用户注册表单 -->
+<div class="register-wrapper">
+    <h2>用户注册</h2>
+    <form class="register-form">
+        <label for="username">用户名：</label>
+        <input type="text" id="username" name="username" placeholder="输入用户名" required>
+
+        <label for="email">邮箱：</label>
+        <input type="email" id="email" name="email" placeholder="输入邮箱" required>
+
+        <label for="password">密码：</label>
+        <input type="password" id="password" name="password" placeholder="输入密码" required>
+
+        <button type="submit">注册</button>
+    </form>
+</div>
+
+<div class="success-message" id="successMessage">注册成功！</div>
+
+<!-- 用户登录表单 -->
+<div class="login-wrapper" id="loginWrapper">
+    <h2>用户登录</h2>
+    <form class="login-form">
+        <label for="login-username">用户名：</label>
+        <input type="text" id="login-username" name="username" placeholder="输入用户名" required>
+
+        <label for="login-password">密码：</label>
+        <input type="password" id="login-password" name="password" placeholder="输入密码" required>
+
+        <button type="submit">登录</button>
+    </form>
+</div>
+
+    <!-- 筛选器 -->
+    <div class="filter-wrapper">
+        <label for="lane-filter">选择分路：</label>
+        <select id="lane-filter">
+            <option value="all">全部</option>
+            <option value="top">上路</option>
+            <option value="mid">中路</option>
+            <option value="adc">下路</option>
+            <option value="jungle">打野</option>
+            <option value="support">辅助</option>
+        </select>
+    </div>
+
+    <!-- 主体内容 -->
+    <main class="hero-grid"></main>
+
+    <!-- 英雄详情页容器 -->
+    <div id="hero-detail-container" style="display: none;"></div>
+
+    <script src="./js/index.js"></script>
+    <script>
+        document.querySelector('.register-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // 阻止表单默认提交行为
+
+            // 模拟注册成功提示
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+
+            // 3秒后隐藏提示
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 3000);
+        });
+
+        document.querySelector('.login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // 阻止表单默认提交行为
+
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            // 模拟登录验证
+            if (username === 'admin' && password === '123456') {
+                alert('登录成功！');
+                document.querySelector('.register-wrapper').style.display = 'none'; // 隐藏注册框
+                document.querySelector('.login-wrapper').style.display = 'none'; // 隐藏登录框
+                // 显示英雄购买界面
+                const main = document.querySelector('main');
+                main.style.display = 'grid';
+                if (typeof renderHeroGrid === 'function') {
+                    renderHeroGrid(); // 调用js/index.js中的渲染函数
+                }
+            } else {
+                alert('用户名或密码错误！');
+            }
+        });
+    </script>
+</body>
+</html>

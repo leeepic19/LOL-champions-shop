@@ -1,0 +1,76 @@
+/* Reset CSS */
+/* 移除所有元素的默认边距和内边距 */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* 更直观的盒模型计算方式 */
+}
+
+/* 基础元素重置 */
+html {
+  line-height: 1.5; /* 统一基础行高 */
+  -webkit-text-size-adjust: 100%; /* 防止移动端字体缩放 */
+}
+
+body {
+  line-height: 1.5;
+  min-height: 100vh; /* 确保 body 至少撑满视口高度 */
+  font-family: Arial, sans-serif; /* 设置默认字体（之后可覆盖） */
+  background-color: #f0f0f0; /* 临时背景色（根据设计调整） */
+  color: #333; /* 临时文字颜色 */
+}
+
+/* 移除列表默认样式 */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 链接默认样式 */
+a {
+  text-decoration: none;
+  color: inherit; /* 继承父元素颜色 */
+}
+
+/* 媒体元素自适应 */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block; /* 避免图片下方间隙 */
+}
+
+/* 表单元素重置 */
+input,
+button,
+textarea,
+select {
+  font: inherit; /* 继承父元素字体 */
+  border: none;
+  background: none;
+  outline: none; /* 移除默认聚焦轮廓（之后用CSS重新设计） */
+}
+
+/* 按钮重置 */
+button {
+  cursor: pointer;
+}
+
+/* 表格重置 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 标题重置（根据设计调整） */
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: normal;
+}
+
+/* 确保重置样式不会影响英雄详情页 */
+#hero-detail-container {
+    all: unset;
+}
